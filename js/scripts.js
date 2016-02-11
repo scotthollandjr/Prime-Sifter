@@ -1,16 +1,24 @@
-var primeList = [];
-var number = 100;
+var eratosthenes = function(n) {
+  
+    var array = [], upperLimit = Math.sqrt(n), output = [];
 
-for ( prime = 2; prime <= number; prime ++ ) {
-  primeList.push(prime);
+    for (var i = 0; i < n; i++) {
+        array.push(true);
+    }
+
+    for (var i = 2; i <= upperLimit; i++) {
+        if (array[i]) {
+            for (var j = i * i; j < n; j += i) {
+                array[j] = false;
+            }
+        }
+    }
+
+    for (var i = 2; i < n; i++) {
+        if(array[i]) {
+            output.push(i);
+        }
+    }
+
+    return output;
 };
-
-var sifter = function() {
-for ( i = 2; i < 100; i ++ ) {
-  if ( primeList[i] % i = 0 ) {
-    primeList.pop(i);
-  }
-}
-};
-
-primeList.forEach(sifter);
